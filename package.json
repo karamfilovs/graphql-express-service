@@ -1,0 +1,29 @@
+{
+  "name": "graphql-express-service",
+  "version": "1.0.0",
+  "description": "Test service",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karamfilovs/graphql-express-service.git"
+  },
+  "keywords": [
+    "graphql",
+    "express"
+  ],
+  "author": "Alex Karamfilov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karamfilovs/graphql-express-service/issues"
+  },
+  "homepage": "https://github.com/karamfilovs/graphql-express-service#readme",
+  "dependencies": {
+    "apollo-server": "^3.4.1",
+    "apollo-server-express": "^3.4.1",
+    "express": "^4.17.1",
+    "graphql": "^16.0.1"
+  }
+}
