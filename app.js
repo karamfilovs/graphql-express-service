@@ -16,14 +16,36 @@ type User {
     id: Int!
     name: String!
     age: Int!
-}`;
+}
+
+type Mutation {
+    makeUser(id: Int!, name: String): User!
+}
+`;
 
 //Define resolvers
 const resolvers = {
+    //Query resolver
     Query: {
         me: () => users[0], //return me if 
         users: () => users, //return all users
         user: (parent, { id }) => users[id - 1] //return user id - 1 to get the right user
+    },
+
+    //Mutation resolver
+    Mutation: {
+        //make user mutation
+        makeUser: (parent, { id, name }) => {
+            //The user 
+            const user = {
+                id,
+                name
+            };
+            //Adding the user to the array of fake users
+            users.push(user);
+            return user;
+        }
+
     }
 };
 
