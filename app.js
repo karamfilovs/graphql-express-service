@@ -28,7 +28,7 @@ type Car {
 }
 
 type Mutation {
-    makeUser(id: Int!, name: String!): User!
+    createUser(id: Int!, name: String!): User!
     removeUser(id: Int!): Boolean!
 }
 `;
@@ -49,7 +49,7 @@ const resolvers = {
     //Mutation resolver
     Mutation: {
         //make user mutation
-        makeUser: (parent, { id, name }) => {
+        createUser: (parent, { id, name }) => {
             //The user 
             const user = {
                 id,
