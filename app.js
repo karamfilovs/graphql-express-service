@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 const { ApolloServer, gql } = require('apollo-server-express');
 const { userInfo } = require('os');
-const users = require('./data').users;
+let users = require('./data').users;
+let cars = require('./data').cars;
+
 
 //Define type defs
 const typeDefs = gql`
@@ -10,6 +12,7 @@ type Query {
     me: User
     user(id: Int!): User
     users: [User]
+    cars: [Car]
 }
 
 type User {
@@ -18,8 +21,15 @@ type User {
     age: Int!
 }
 
+type Car {
+    id: Int!
+    make: String!
+    year: String!
+}
+
 type Mutation {
-    makeUser(id: Int!, name: String): User!
+    makeUser(id: Int!, name: String!): User!
+    removeUser(id: Int!): Boolean!
 }
 `;
 
@@ -27,9 +37,13 @@ type Mutation {
 const resolvers = {
     //Query resolver
     Query: {
+        //User resolvers
         me: () => users[0], //return me if 
         users: () => users, //return all users
-        user: (parent, { id }) => users[id - 1] //return user id - 1 to get the right user
+        user: (parent, { id }) => users[id - 1], //return user id - 1 to get the right user
+
+        //Car resolvers
+        cars: () => cars,
     },
 
     //Mutation resolver
@@ -44,8 +58,12 @@ const resolvers = {
             //Adding the user to the array of fake users
             users.push(user);
             return user;
+        },
+        removeUser: (parent, { id }) => {
+            const initialCount = users.length
+            users = users.filter(user => user.id === id)
+            return initialCount != users.length
         }
-
     }
 };
 

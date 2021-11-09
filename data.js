@@ -19,9 +19,21 @@ let users = [
 
 
 let cars = [
-    {},
-    {},
-    {}
+    {
+        id: 1,
+        make: 'Honda',
+        year: 2010
+    },
+    {
+        id: 2,
+        make: 'Toyota',
+        year: 2013
+    },
+    {
+        id: 3,
+        make: 'BMW',
+        year: 2020
+    }
 ]
 
-module.exports = { users };
+module.exports = { users, cars };
