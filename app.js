@@ -23,7 +23,9 @@ type User {
 
 type Car {
     id: Int!
+    "The car make/producer"
     make: String!
+    "Year of production"
     year: String!
 }
 
